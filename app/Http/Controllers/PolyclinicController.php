@@ -10,8 +10,9 @@ class PolyclinicController extends Controller
 {
     public function home()
     {
-        $polyclinics = Polyclinic::all();
-
+        $polyclinics = Polyclinic::get();
+        
+        
         return view('home', compact('polyclinics'));
     }
 }

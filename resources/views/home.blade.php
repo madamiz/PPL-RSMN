@@ -2,22 +2,19 @@
 <html lang="en">
 
 <head>
-    {{-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" /> --}}
-    {{-- <link rel="stylesheet" href="node_modules/boxicons/css/boxicons.min.css" /> --}}
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="s531dcd88f8" crossorigin="anonymous" /> --}}
-    
-    <!-- <link rel="stylesheet" href="node_modules/boxicons/dist/boxicons.js"> -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="assets/favicon/Icon.png" sizes="16x16" style="width: 64px; height: 32px;">
     <title>Official Website RSMN</title>
-    
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <script src="{{ mix('js/app.js') }}" defer></script>
-    @vite(['resources/js/app.js'])
-    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="531dcd88f8" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 </head>
 
@@ -111,92 +108,79 @@
                     Medika Nusantara
                 </p>
             </div>
-            <div id="card-slider" class="carousel carousel-dark slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#card-slider" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#card-slider" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#card-slider" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-
-                <div class="carousel-inner">
-                    @foreach ($polyclinics->chunk(3) as $chunk)
-                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                            <div class="row">
-                                @foreach ($chunk as $polyclinic)
-                                    <div class="col-md-4">
-                                        <div class="card" style="width: 20rem">
-                                            <div class="card-body">
-                                                <div class="card-icon">
-                                                    {!! $polyclinic->icon !!}
-                                                </div>
-                                                <h5 class="card-title">{{ $polyclinic->title }}</h5>
-                                                <p class="card-text">
-                                                    {{ $polyclinic->description }}
-                                                </p>
-                                                <div class="detail-wrapper">
-                                                    <ul class="detail">
-                                                        <li class="detail-items">
-                                                            <i class="fa-solid fa-circle-check"></i> Hari:
-                                                            {{ $polyclinic->day }}
-                                                        </li>
-                                                        <li class="detail-items">
-                                                            <i class="fa-solid fa-circle-check"></i> Jam buka:
-                                                            {{ $polyclinic->time }}
-                                                        </li>
-                                                        <li class="detail-items">
-                                                            <i class="fa-solid fa-circle-check"></i> Dokter:
-                                                            {{ $polyclinic->name }}
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <a href="#" class="btn btn-primary">Lebih lanjut
-                                                    <i class="bx bx-right-arrow-alt bx-xs"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+            <div class="owl-carousel owl-theme">
+                @foreach ($polyclinics->unique('title') as $polyclinic)
+                    <div class="card" style="width: 100%; height: 26rem">
+                        <div class="card-body">
+                            <div class="card-icon">
+                                {!! $polyclinic->icon !!}
                             </div>
-                    @endforeach
-                </div>
-
-
-                {{-- <div class="carousel-item active">
-                        <img src="..." class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
+                            <h5 class="card-title">{{ $polyclinic->title }}</h5>
+                            <p class="card-text">
+                                {{ $polyclinic->description }}
+                            </p>
+                            <div class="detail-wrapper">
+                                <ul class="detail">
+                                    <li class="detail-items">
+                                        <i class="fa-solid fa-circle-check"></i> Hari:
+                                        {{ $polyclinic->day }}
+                                    </li>
+                                    <li class="detail-items">
+                                        <i class="fa-solid fa-circle-check"></i> Jam buka:
+                                        {{ $polyclinic->time }}
+                                    </li>
+                                    <li class="detail-items">
+                                        <i class="fa-solid fa-circle-check"></i> Dokter:
+                                        {{ $polyclinic->name }}
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="#" class="btn btn-primary">Lebih lanjut
+                                <i class="bx bx-right-arrow-alt bx-xs"></i></a>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <img src="..." class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="..." class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
-                        </div>
-                    </div> --}}
-                <button class="carousel-control-prev" type="button" data-bs-target="#card-slider"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#card-slider"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                @endforeach
             </div>
         </div>
     </section>
+
+    <section class="facility" id="facility">
+        <div class="facility-wrapper">
+            <h1 class="facility-heading">Fasilitas Rawat Inap</h1>
+            <div class=" container mt-5 border-primary">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
     <!-- <div class="overlay"></div> -->
     <div class="container">
         <div class="popup" id="popup">
@@ -208,18 +192,14 @@
         </div>
     </div>
 
-    
-    <script src="script.js"></script>
-    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script> --}}
-    {{-- <script>
-        $(document).ready(function() {
-            $('#card-slider').carousel();
-        });
-    </script> --}}
+    </script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="https://kit.fontawesome.com/531dcd88f8.js" crossorigin="anonymous"></script>
+
+    <script src="{{ asset('js/script.js') }} " defer></script>
 </body>
 
 </html>

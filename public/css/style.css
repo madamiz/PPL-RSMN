@@ -17,36 +17,25 @@
     text-decoration: none;
 }
 
+section {
+    min-height: 100vh;
+}
+
 .home {
     background-image: url('../assets/img/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: multiply;
     position: relative;
-    min-height: 100vh;
     display: block;
     align-items: center;
     content: '';
-    /* inset: 0; */
     background-color: #1e1e1e;
     opacity: 1;
-    /* max-width: 1280px; */
 }
-
-/* .container {
-    max-width: 1280px;
-} */
 
 /* Navbar Start*/
 .custom-navbar .nav-wrapper {
-    /* position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 40px 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -227,15 +216,14 @@ ul, ol {
 .card-wrapper {
     display: flex;
     justify-content: center;
-    /* align-items: flex-start; */
-    /* align-content: flex-start; */
     gap: 20px;
-    /* align-self: stretch; */
     flex-wrap: wrap;
 }
-.row {
+
+/* .row {
     margin: auto;
-}
+} */
+
 .card .card-top {
     margin-top: 20px;
     margin-inline: 20px;
@@ -245,7 +233,6 @@ ul, ol {
     align-items: center;
     align-content: center;
     align-self: stretch;
-    /* margin-left: 0; */
 }
 
 .card-icon {
@@ -273,8 +260,57 @@ ul, ol {
 .btn-primary {
     background-color: var(--secondary);
     border: none;
-    width: 100%;
+    /* width: 100%; */
     bottom: 0;
+    position:absolute;
+    margin-bottom: 20px;
+}
+
+.owl-nav {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+}
+
+.owl-nav .owl-prev {
+    position: absolute;
+    left: 0;
+}
+
+.owl-nav .owl-next {
+    position: absolute;
+    right: 0;
+    display: block;
+    padding: 16px !important;
+}
+
+.owl-theme .owl-nav{
+    margin-top: 0;
+}
+
+.owl-dots {
+    margin-top: 20px;
+}
+/* Schedule End */
+
+/* Facility Start */
+.facility-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.facility-heading {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.4em;
+    text-align: center;
 }
 
 .popup {
