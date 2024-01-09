@@ -5,6 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Polyclinic;
+use App\Models\Inpatient;
+use App\Models\Installation;
+use App\Models\Contact;
 
 class DatabaseSeeder extends Seeder
 {
@@ -72,6 +75,77 @@ class DatabaseSeeder extends Seeder
             'day' => 'Senin - Sabtu',
             'time' => '08.00 - 11.00 WIB',
             'name' => 'dr. Kharisma Gita Edhita, Sp.M'
+        ]);
+
+        Inpatient::create([
+            'class' => 'VVIP',
+            'bed_total' => '9',
+            'filled' => '4',
+            'empty' => '5',
+            'price' => '500000'
+        ]);
+
+        Inpatient::create([
+            'class' => 'VIP',
+            'bed_total' => '23',
+            'filled' => '21',
+            'empty' => '2',
+            'price' => '380000'
+        ]);
+
+        Inpatient::create([
+            'class' => 'Kelas 1',
+            'bed_total' => '73',
+            'filled' => '59',
+            'empty' => '14',
+            'price' => '230000'
+        ]);
+
+        Inpatient::create([
+            'class' => 'Kelas 2',
+            'bed_total' => '127',
+            'filled' => '96',
+            'empty' => '31',
+            'price' => '160000'
+        ]);
+
+        Inpatient::create([
+            'class' => 'Kelas 3',
+            'bed_total' => '168',
+            'filled' => '114',
+            'empty' => '54',
+            'price' => '95000'
+        ]);
+
+        Installation::create([
+            'img_path' => 'storage/img/igd.jpg',
+            'title' => 'Instalasi Gawat Darurat (IGD)',
+            'description' => 'Memberikan pelayanan One Day Care selama 24 jam.',
+        ]);
+
+        Installation::create([
+            'img_path' => 'storage/img/jenazah.jpg',
+            'title' => 'Instalasi Kamar Jenazah',
+            'description' => 'Instalasi Kamar Jenazah melayani: Konservasi Jenazah, Pemulasaran Jenazah, Pembalseman Pengawetan Jenazah, Persemayaman/Rumah Duka Persemayaman.',
+        ]);
+
+        Installation::create([
+            'img_path' => 'storage/img/radiology.jpg',
+            'title' => 'Instalasi Radiology',
+            'description' => 'Pelayanan untuk melakukan diagnosis menggunakan peralatan X-ray.',
+        ]);
+
+        Installation::create([
+            'img_path' => 'storage/img/pharmacy.jpg',
+            'title' => 'Instalasi Farmasi',
+            'description' => 'Memberikan pelayanan kesediaan farmasi untuk obat-obatan bagi pasien.',
+        ]);
+
+        Contact::create([
+            'address' => 'Sepaku, Kabupaten Penajam Paser Utara, Provinsi Kalimantan Timur',
+            'phone' => '0541-21102041',
+            'email' => 'rsmedikanusantara@ikn.go.id',
+            'location' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.243037873324!2d116.70625760973533!3d-0.9729865990135261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df6c9a9138990fd%3A0x593aee2ae36416b6!2sTitik%20Nol%20IKN%20Nusantara!5e0!3m2!1sid!2sid!4v1704732733344!5m2!1sid!2sid'
         ]);
     }
 }

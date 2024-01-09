@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Polyclinic;
+use App\Models\Inpatient;
 
-class PolyclinicController extends Controller
+class InpatientController extends Controller
 {
     
 }

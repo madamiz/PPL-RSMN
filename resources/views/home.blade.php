@@ -144,43 +144,126 @@
         </div>
     </section>
 
-    <section class="facility" id="facility">
-        <div class="facility-wrapper">
-            <h1 class="facility-heading">Fasilitas Rawat Inap</h1>
-            <div class=" container mt-5 border-primary">
-                <table class="table table-striped table-bordered">
-                    <thead>
+    {{-- Inpatient --}}
+    <section class="inpatient" id="inpatient">
+        <div class="inpatient-wrapper">
+            <h1 class="inpatient-heading">Fasilitas Rawat Inap</h1>
+            <div class="table-wrapper p-3 mb-2 border border-dark-subtle rounded">
+                <table class="table">
+                    <thead class="table">
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th class="text-center" scope="col">Kelas</th>
+                            <th class="text-center" scope="col">Jumlah Kasur</th>
+                            <th class="text-center" scope="col">Terisi</th>
+                            <th class="text-center" scope="col">Kosong</th>
+                            <th class="text-center" scope="col">Harga</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        @foreach ($inpatients as $inpatient)
+                            <tr>
+                                <td class="text-center">{{ $inpatient->class }}</td>
+                                <td class="text-center">{{ $inpatient->bed_total }}</td>
+                                <td class="text-center">{{ $inpatient->filled }}</td>
+                                <td class="text-center">{{ $inpatient->empty }}</td>
+                                <td class="text-center">RP. {{ $inpatient->price }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
 
+    <section class="installation" id="installation">
+        <div class="installation-wrapper">
+            <div class="installation-text">
+                <h1 class="installation-heading">Fasilitas Instalasi</h1>
+                <p class="installation-subheading">
+                    Berikut fasilitas instalasi yang tersedia pada Rumah Sakit Medika Nusantara
+                </p>
+            </div>
+            <div class="owl-carousel owl-theme">
+                @foreach ($installations->unique('title') as $installation)
+                    <div class="card" style="width: 100%; height: 28rem">
+                        <div class="card-body">
+                            <div class="card-image mb-3">
+                                <img src="{{ asset($installation->img_path) }}" class="card-img-top img-fluid"
+                                    alt="{{ $installation->title }}">
+                            </div>
+                            <h5 class="card-title">{{ $installation->title }}</h5>
+                            <p class="card-text">
+                                {{ $installation->description }}
+                            </p>
+                            <a href="#" class="btn btn-primary">Lebih lanjut
+                                <i class="bx bx-right-arrow-alt bx-xs"></i></a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- Gallery --}}
+    <section class="gallery" id="gallery">
+        <div class="gallery-wrapper">
+            <h1 class="gallery-heading"> Galeri </h1>
+            <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="gradient-overlay-top"></div>
+                <div class="carousel-inner">
+                    @foreach ($installations->unique('title') as $key => $installation)
+                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                            <img src="{{ asset($installation->img_path) }}" class="d-block w-100"
+                                alt="{{ $installation->title }}">
+                        </div>
+                    @endforeach
+                </div>
+                <div class="gradient-overlay-bottom"></div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    {{-- Contact --}}
+    <section class="contact" id="contact">
+        <div class="contact-wrapper">
+            <div class="contact-row">
+                <div class="contact-text">
+                    <h1 class="contact-heading">Kontak Kami</h1>
+                    <ul class="contact-menu">
+                        @foreach ($contacts as $contact)
+                            <li class="contact-item">{{ $contact->address }}</li>
+                            <li class="contact-item">Telepon: {{ $contact->phone }}</li>
+                            <li class="contact-item">Email: {{ $contact->email }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <iframe
+                    src="{{ $contact->location }}"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer"></footer>
     <!-- <div class="overlay"></div> -->
     <div class="container">
         <div class="popup" id="popup">

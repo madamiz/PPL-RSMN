@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PolyclinicController;
+use App\Http\Controllers\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +18,10 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/', [PolyclinicController::class, 'home']);
-// // Route::get('/home', function () {
-// //     return view('home');
-// // });
+Route::get('/', [MainController::class, 'home']);
+
+// Route::get('/', [InpatientController::class, 'home']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
